@@ -16,28 +16,35 @@ public class Main {
         Financiamento casa = new Casa(
                 interfaceUsuario.getValorImovel(),
                 interfaceUsuario.getPrazoFianciamento(),
-                interfaceUsuario.getTaxaJuros()
+                interfaceUsuario.getTaxaJuros(),
+                interfaceUsuario.getAreaConstruida(),
+                interfaceUsuario.getAreaTerreno()
         );
         financiamentos.add(casa);
 
         Financiamento apartamento1 = new Apartamento(
                 interfaceUsuario.getValorImovel(),
                 interfaceUsuario.getPrazoFianciamento(),
-                interfaceUsuario.getTaxaJuros()
-        );
+                interfaceUsuario.getTaxaJuros(),
+                interfaceUsuario.getVagasGaragem(),
+                interfaceUsuario.getAndar()
+                );
         financiamentos.add(apartamento1);
 
         Financiamento apartamento2 = new Apartamento(
                 interfaceUsuario.getValorImovel(),
                 interfaceUsuario.getPrazoFianciamento(),
-                interfaceUsuario.getTaxaJuros()
+                interfaceUsuario.getTaxaJuros(),
+                interfaceUsuario.getVagasGaragem(),
+                interfaceUsuario.getAndar()
         );
         financiamentos.add(apartamento2);
 
         Financiamento terreno = new Terreno(
                 interfaceUsuario.getValorImovel(),
                 interfaceUsuario.getPrazoFianciamento(),
-                interfaceUsuario.getTaxaJuros()
+                interfaceUsuario.getTaxaJuros(),
+                interfaceUsuario.getZona()
         );
         financiamentos.add(terreno);
 
