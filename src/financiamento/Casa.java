@@ -1,6 +1,8 @@
 package financiamento;
 
-public class Casa extends Financiamento {
+import java.io.Serializable;
+
+public class Casa extends Financiamento implements Serializable {
     private double areaConstruida;
     private double areaTerreno;
     private static final double SEGURO_CASA = 80.0;

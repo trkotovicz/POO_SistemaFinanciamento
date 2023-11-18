@@ -1,6 +1,11 @@
 package financiamento;
 
-public abstract class Financiamento {
+import java.io.*;
+import java.util.ArrayList;
+
+public abstract class Financiamento implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private double valorImovel;
     private int prazoFinanciamento;
     private double taxaJurosAnual;
@@ -42,5 +47,38 @@ public abstract class Financiamento {
         System.out.println("Taxa de Juros Anual: " + taxaJurosAnual + "%");
         System.out.println("Pagamento Mensal: " + String.format("%.2f", calcularPagamentoMensal()));
         System.out.println("Pagamento Total: " + String.format("%.2f", calcularPagamentoTotal()));
+    }
+
+    public static void escreverFinanciamentos(String filename, ArrayList<Financiamento> financiamentos) {
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(filename));
+            for (Financiamento financiamento : financiamentos) {
+                out.writeObject(financiamento);
+            }
+            out.flush();
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Financiamento> lerFinanciamentos(String filename) {
+        ArrayList<Financiamento> financiamentos = new ArrayList<>();
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+            while (true) {
+                try {
+                    Financiamento financiamento = (Financiamento) in.readObject();
+                    financiamentos.add(financiamento);
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return financiamentos;
     }
 }

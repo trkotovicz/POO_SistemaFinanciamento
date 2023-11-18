@@ -9,6 +9,7 @@ import usuario.InterfaceUsuario;
 import java.util.ArrayList;
 
 public class Main {
+    private static final String FINANCIAMENTOS_FILE = "financiamentos.txt";
     public static void main(String[] args) {
         InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
         ArrayList<Financiamento> financiamentos = new ArrayList<>();
@@ -58,5 +59,13 @@ public class Main {
 
         System.out.println("Valor Total de todos os imóveis: R$ " + String.format("%.2f", totalImoveis));
         System.out.println("Valor Total de todos os financiamentos: R$ " + String.format("%.2f", totalFinanciamentos));
+
+        Financiamento.escreverFinanciamentos(FINANCIAMENTOS_FILE, financiamentos);
+        ArrayList<Financiamento> lerFinanciamentos = Financiamento.lerFinanciamentos(FINANCIAMENTOS_FILE);
+
+        for (Financiamento financiamento : lerFinanciamentos) {
+            financiamento.getInformacoes();
+            System.out.println();
+        }
     }
 }
