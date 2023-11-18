@@ -11,14 +11,10 @@ public abstract class Financiamento {
         this.taxaJurosAnual = taxaJurosAnual;
     }
 
-//    public double calcularPagamentoMensal() {
-//        return (valorImovel / prazoFinanciamento ) * (1 + (taxaJurosAnual / 12));
-//    }
-
     public double calcularPagamentoMensal() {
         double taxaMensal = taxaJurosAnual / 100 / 12;
         int meses = prazoFinanciamento * 12;
-        return (valorImovel * taxaMensal * Math.pow((1 + taxaMensal), meses))
+        return ((valorImovel * taxaMensal) * Math.pow((1 + taxaMensal), meses))
                 / (Math.pow((1 + taxaMensal), meses) - 1);
     }
 
